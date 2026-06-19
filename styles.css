@@ -1,0 +1,456 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    color: #222;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.logo {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 30px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.menu-button {
+    background: #002b7f;
+    color: white;
+    border: none;
+    padding: 15px 35px;
+    border-radius: 10px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+	min-height: 70px;
+	line-height: 1.3;
+}
+
+.menu-button:hover {
+    background: #d71920;
+}
+
+.welcome-box {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.welcome-box h1 {
+    color: #002b7f;
+    margin-bottom: 10px;
+}
+
+.welcome-box h2 {
+    color: #d71920;
+    margin-bottom: 20px;
+}
+
+.welcome-box p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+#content {
+    margin-top: 20px;
+}
+
+.filter-row {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.filter-row input,
+.filter-row select {
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.filter-row input {
+    flex: 1;
+    min-width: 200px;
+}
+
+.participant-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.participant-table th {
+    background: #002b7f;
+    color: white;
+    padding: 10px;
+    text-align: left;
+}
+
+.participant-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.allergy-cell {
+    background: #ffe0e0;
+    font-weight: bold;
+}
+
+/* Mobilvisning */
+@media (max-width: 700px) {
+    .participant-table,
+    .participant-table thead,
+    .participant-table tbody,
+    .participant-table th,
+    .participant-table td,
+    .participant-table tr {
+        display: block;
+        width: 100%;
+    }
+
+    .participant-table thead {
+        display: none;
+    }
+
+    .participant-table tr {
+        background: white;
+        margin-bottom: 14px;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+        overflow: hidden;
+        border: 1px solid #ddd;
+    }
+
+    .participant-table td {
+        border: none;
+        border-bottom: 1px solid #eee;
+        padding: 10px 12px;
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+        text-align: right;
+    }
+
+    .participant-table td::before {
+        font-weight: bold;
+        color: #002b7f;
+        text-align: left;
+    }
+
+    .participant-table td:nth-child(1)::before {
+        content: "Navn";
+    }
+
+    .participant-table td:nth-child(2)::before {
+        content: "Gruppe";
+    }
+
+    .participant-table td:nth-child(3)::before {
+        content: "Født";
+    }
+
+    .participant-table td:nth-child(4)::before {
+        content: "T-skjorte";
+    }
+
+    .participant-table td:nth-child(5)::before {
+        content: "Allergi/mat";
+    }
+
+    .allergy-cell {
+        background: #ffe0e0;
+    }
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.contact-card {
+  background: white;
+  border-left: 5px solid #002b7f;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: left;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.contact-card h3 {
+  color: #002b7f;
+  margin-bottom: 10px;
+}
+
+.contact-card p {
+  margin: 5px 0;
+}
+
+.task-list {
+  text-align: left;
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+.task-list li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.important-box {
+  background: #fff8d6;
+  border-left: 6px solid #f0b400;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+}
+
+.important-box h3 {
+  margin-top: 0;
+}
+
+.home-button {
+    background: #002b7f;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 5px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.home-button:hover {
+    background: #002b7f;
+    color: white;
+}
+
+.top-menu {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.attendance-table td:nth-child(1)::before {
+  content: "Navn";
+}
+
+.attendance-table td:nth-child(2)::before {
+  content: "Man før";
+}
+
+.attendance-table td:nth-child(3)::before {
+  content: "Man etter";
+}
+
+.attendance-table td:nth-child(4)::before {
+  content: "Tir før";
+}
+
+.attendance-table td:nth-child(5)::before {
+  content: "Tir etter";
+}
+
+.attendance-table td:nth-child(6)::before {
+  content: "Ons før";
+}
+
+.attendance-table td:nth-child(7)::before {
+  content: "Ons etter";
+}
+
+.attendance-table input[type="checkbox"] {
+  width: 22px;
+  height: 22px;
+}
+
+.attendance-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.attendance-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  background: white;
+  border: 1px solid #ddd;
+  border-left: 5px solid #002b7f;
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.attendance-card input[type="checkbox"] {
+  width: 28px;
+  height: 28px;
+}
+
+.attendance-counter {
+  background: #eef3ff;
+  color: #002b7f;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.exercise-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.exercise-card {
+  background: white;
+  border: 1px solid #ddd;
+  border-left: 6px solid #002b7f;
+  border-radius: 10px;
+  padding: 14px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.exercise-card h3 {
+  margin: 0 0 6px 0;
+  color: #002b7f;
+}
+
+.exercise-card p {
+  margin: 0;
+  color: #555;
+  font-size: 14px;
+}
+
+.instruction-page {
+  text-align: left;
+}
+
+.instruction-section {
+  background: #f8fafc;
+  border-left: 5px solid #002b7f;
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 16px;
+}
+
+.instruction-section h3 {
+  margin-top: 0;
+  color: #002b7f;
+}
+
+.instruction-section ul,
+.instruction-section ol {
+  padding-left: 20px;
+  margin: 0;
+}
+
+.instruction-section li {
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.highlight-box {
+  background: #fff8d6;
+  border-left: 6px solid #f0b400;
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 16px;
+}
+
+.welcome-box {
+  text-align: left;
+}
+
+.welcome-box h1,
+.welcome-box h2,
+.welcome-box h3 {
+  text-align: center;
+}
+
+.welcome-box p {
+  text-align: left;
+}
+
+.attendance-summary-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.attendance-summary-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  border-left: 6px solid #002b7f;
+  border-radius: 10px;
+  padding: 14px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  font-size: 16px;
+}
+
+.attendance-summary-card strong {
+  color: #002b7f;
+  font-size: 18px;
+}
+
+.attendance-overview-section {
+  background: #f8fafc;
+  border-left: 6px solid #002b7f;
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.attendance-overview-section h3 {
+  color: #002b7f;
+  text-align: left;
+  margin-bottom: 8px;
+}
+
+.attendance-overview-section h4 {
+  margin-top: 12px;
+  margin-bottom: 6px;
+}
+
+.attendance-name-list {
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+
+.attendance-name-list li {
+  margin-bottom: 4px;
+}
+
+.attendance-name-list.missing {
+  color: #b00020;
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TINE Fotballskule 2026</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <img src="logo.png" alt="TINE Fotballskule" class="logo">
+
+        <div class="top-menu">
+            <button class="home-button" onclick="goHome()">
+                Framside
+            </button>
+        </div>
+
+        <div id="mainMenu" class="button-container">
+            <button class="menu-button" onclick="showInstructorInfo()">
+                Instruktørar
+            </button>
+
+            <button class="menu-button" onclick="showResponsibleMenu()">
+                Ansvarlege
+            </button>
+        </div>
+
+        <div id="content">
+            <div class="welcome-box">
+                <h1>Velkommen til TINE Fotballskule 2026</h1>
+                <h2>Samnanger IL</h2>
+
+                <p>
+                    Her finn du informasjon for instruktørar og ansvarlege
+                    under fotballskulen.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+    <script>
+const firebaseConfig = {
+  apiKey: "AIzaSyCqJ7v1KO58AwX2hJ89mgnHB55Lc6B0QHA",
+  authDomain: "tine-fotballskule.firebaseapp.com",
+  projectId: "tine-fotballskule",
+  storageBucket: "tine-fotballskule.firebasestorage.app",
+  messagingSenderId: "613603264043",
+  appId: "1:613603264043:web:47dcec3d1dfe4e19304c6e"
+};
+
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
+    <script src="app.js"></script>
+
+</body>
+</html>
