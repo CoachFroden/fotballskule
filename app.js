@@ -1,5 +1,10 @@
 const ANSVARLIG_KODE = "2026";
 
+let ansvarligInnlogget = false;
+let sisteAktivitet = 0;
+
+const TIMEOUT_MINUTTER = 5;
+
 const db = firebase.firestore();
 
 const instructors = [
@@ -852,12 +857,25 @@ async function loadAttendance(groupParticipants, group) {
 }
 
 function showResponsibleMenu() {
-  const kode = prompt("Skriv inn kode for ansvarlige:");
 
-  if (kode !== ANSVARLIG_KODE) {
-    alert("Feil kode");
-    return;
+  const no = Date.now();
+
+  if (
+    !ansvarligInnlogget ||
+    (no - sisteAktivitet) > TIMEOUT_MINUTTER * 60 * 1000
+  ) {
+
+    const kode = prompt("Skriv inn kode for ansvarlige:");
+
+    if (kode !== ANSVARLIG_KODE) {
+      alert("Feil kode");
+      return;
+    }
+
+    ansvarligInnlogget = true;
   }
+
+  sisteAktivitet = Date.now();
 
   document.getElementById("mainMenu").innerHTML = `
     <button class="menu-button" onclick="showResponsiblePage('deltakere')">Deltakere</button>
