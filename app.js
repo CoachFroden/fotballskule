@@ -93,7 +93,7 @@ const participants = [
   { navn: "Sened Debrom Tesfamichael", gruppe: 4, fodselsar: 2015, tshirt: "147-158cm", allergi: "Laktoseintoleranse" },
   { navn: "Sebastian Nytveit", gruppe: 4, fodselsar: 2015, tshirt: "147-158cm", allergi: "" },
   { navn: "Ylva Jonathanson", gruppe: 4, fodselsar: 2015, tshirt: "147-158cm", allergi: "" },
-  { navn: "Sebastian", gruppe: 4, fodselsar: 2015, tshirt: "147-158cm", allergi: "" },
+  { navn: "Sebastian Mæhle Thoresen", gruppe: 4, fodselsar: 2015, tshirt: "147-158cm", allergi: "Egg og nøtter" },
   { navn: "Ulrik Arnatveit Aldal", gruppe: 4, fodselsar: 2015, tshirt: "147-158cm", allergi: "" },
   { navn: "Ingrid Litangen -Skår", gruppe: 4, fodselsar: 2015, tshirt: "158-170cm", allergi: "" },
   { navn: "Samuel Bjørkmo", gruppe: 4, fodselsar: 2015, tshirt: "147-158cm", allergi: "" },
