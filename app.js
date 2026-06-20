@@ -637,7 +637,7 @@ document.getElementById("content").innerHTML = `
 • Fortel kort kva som skal skje denne dagen.<br>
 • Sjekk at alle har fotballsko og leggskinn.<br>
 • På dag 2 og 3 kan du spørje om dei hugsar noko frå dagen før.<br>
-• Start raskt med aktivitet.
+• Start raskt med aktivitet.Velg blant øvelsene eller finn på eigne.
 </p>
 
 <h3>Under øktene</h3>
@@ -662,7 +662,7 @@ document.getElementById("content").innerHTML = `
 • Ta nytt opprop.<br>
 • Presenter dykk dersom gruppa har fått nye instruktørar.<br>
 • Start med ei enkel øving i 15–20 minutt.<br>
-• Del deretter inn i lag og spel kampar resten av økta.
+• Del deretter inn i lag og spel kampar resten av økta, eller gjer øvelser.
 </p>
 
 <h3>Avslutting av dagen</h3>
