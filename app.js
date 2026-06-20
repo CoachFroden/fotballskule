@@ -553,6 +553,10 @@ function showInstructorInfo() {
     <button class="menu-button" onclick="showInstructorPage('instrukser')">
       Instrukser
     </button>
+	
+	<button class="menu-button" onclick="showInstructorPage('grupper')">
+      Grupper
+    </button>
   `;
 
   document.getElementById("content").innerHTML = `
@@ -686,6 +690,44 @@ Målet med fotballskulen er ikkje å vinne kampar eller gjennomføre flest mogle
 `;
     return;
   }
+  
+  if (page === "grupper") {
+
+  let html = "";
+
+  for (let gruppe = 1; gruppe <= 5; gruppe++) {
+
+    const gruppeInstruktorer = instructors.filter(i =>
+      String(i.gruppe).startsWith(String(gruppe))
+    );
+
+    html += `
+      <div class="instruction-section">
+        <h3>Gruppe ${gruppe}</h3>
+
+        <ul>
+          ${gruppeInstruktorer.map(i => `<li>${i.navn}</li>`).join("")}
+        </ul>
+      </div>
+    `;
+  }
+
+  document.getElementById("content").innerHTML = `
+    <div class="welcome-box">
+
+      <h2>Instruktørgrupper</h2>
+
+      <p>
+        Oversikt over kven som er på dei forskjellige gruppene
+      </p>
+
+      ${html}
+
+    </div>
+  `;
+
+  return;
+}
 }
 
 function showExercise(id) {
