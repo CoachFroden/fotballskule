@@ -54,7 +54,6 @@ const participants = [
   { navn: "Eryk Bucki", gruppe: 2, fodselsar: 2018, tshirt: "137-147cm", allergi: "" },
   { navn: "Tobias Vinje Våge", gruppe: 2, fodselsar: 2018, tshirt: "137-147cm", allergi: "" },
   { navn: "Ylva Fossdal Moe", gruppe: 2, fodselsar: 2018, tshirt: "137-147cm", allergi: "" },
-  { navn: "Elise Espelid", gruppe: 2, fodselsar: 2018, tshirt: "137-147cm", allergi: "" },
   { navn: "Liva Aa. Morskogen", gruppe: 2, fodselsar: 2018, tshirt: "147-158cm", allergi: "" },
   { navn: "Mikkel Stavnes Hisdal", gruppe: 2, fodselsar: 2018, tshirt: "137-147cm", allergi: "" },
   { navn: "Isak Jørgensen Vikøy", gruppe: 2, fodselsar: 2018, tshirt: "128-137cm", allergi: "" },
