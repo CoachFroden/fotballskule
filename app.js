@@ -6,6 +6,7 @@ let sisteAktivitet = 0;
 const TIMEOUT_MINUTTER = 5;
 
 const db = firebase.firestore();
+let attendanceListener = null;
 
 const instructors = [
   { navn: "Adele Liøen Tveiterås", gruppe: 2, telefon: "929 99 350", epost: "adelelioen@icloud.com" },
@@ -822,26 +823,33 @@ async function showAttendanceSession(group, session) {
     </div>
   `;
 
-  await loadAttendanceSession(groupParticipants, group, session);
-  updateAttendanceCounter(groupParticipants, session);
+  loadAttendanceSession(groupParticipants, group, session);
 }
 
-async function loadAttendanceSession(groupParticipants, group, session) {
-  for (const p of groupParticipants) {
-    const id = makeId(p.navn);
+function loadAttendanceSession(groupParticipants, group, session) {
 
-    const doc = await db.collection("fotballskule2026")
-      .doc("krysselister")
-      .collection("gruppe" + group)
-      .doc(id)
-      .get();
-
-    if (doc.exists) {
-      const data = doc.data();
-      const checkbox = document.getElementById(`${id}_${session}`);
-      if (checkbox) checkbox.checked = data[session] === true;
-    }
+  if (attendanceListener) {
+    attendanceListener();
   }
+
+  attendanceListener = db.collection("fotballskule2026")
+    .doc("krysselister")
+    .collection("gruppe" + group)
+    .onSnapshot(snapshot => {
+
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        const id = doc.id;
+
+        const checkbox = document.getElementById(`${id}_${session}`);
+
+        if (checkbox) {
+          checkbox.checked = data[session] === true;
+        }
+      });
+
+      updateAttendanceCounter(groupParticipants, session);
+    });
 }
 
 function updateAttendanceCounter(groupParticipants, session) {
