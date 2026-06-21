@@ -454,3 +454,13 @@ body {
 .attendance-name-list.missing {
   color: #b00020;
 }
+
+.clickable-name {
+  cursor: pointer;
+  padding: 6px 4px;
+  border-bottom: 1px solid #eee;
+}
+
+.clickable-name:hover {
+  background: #eef3ff;
+}

@@ -1292,7 +1292,7 @@ function showAttendanceOverview(group) {
 
         groupParticipants.forEach(p => {
           const id = makeId(p.navn);
-
+console.log(id, attendanceData[id]);
           if (attendanceData[id] && attendanceData[id][session.key] === true) {
             present.push(p.navn);
           } else {
@@ -1307,12 +1307,18 @@ function showAttendanceOverview(group) {
 
             <h4>✅ Møtt</h4>
 <ul class="attendance-name-list">
-  ${present.map(name => `<li>${name}</li>`).join("") || "<li>Ingen er kryssa av</li>"}
+  ${present.map(name => {
+  const id = makeId(name);
+  return `<li onclick="saveAttendance('${id}', ${group}, '${session.key}', false)" class="clickable-name">${name}</li>`;
+}).join("") || "<li>Ingen er kryssa av</li>"}
 </ul>
 
 <h4>❌ Manglar / ikkje kryssa av</h4>
 <ul class="attendance-name-list missing">
-  ${missing.map(name => `<li>${name}</li>`).join("") || "<li>Alle er kryssa av</li>"}
+  ${missing.map(name => {
+  const id = makeId(name);
+  return `<li onclick="saveAttendance('${id}', ${group}, '${session.key}', true)" class="clickable-name">${name}</li>`;
+}).join("") || "<li>Alle er kryssa av</li>"}
 </ul>
           </div>
         `;
