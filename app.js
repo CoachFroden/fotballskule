@@ -317,8 +317,8 @@ const exercises = [
     Sett opp tre merker forover med en meter fra hverandre.
     `,
 
-    forklaring: 
-	Lagene stiller seg opp i rekker bak linjen eller merket.`
+    forklaring: `
+	Lagene stiller seg opp i rekker bak linjen eller merket.
     Første spiller tar ballen med seg til første merke, løper tilbake uten ball.
     Deretter løper spilleren ut igjen og tar ballen med seg til neste merke osv.
 	Når han har løpt tilbake og ut igjen til siste merke, skal han sentre til neste på laget.
