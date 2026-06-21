@@ -173,6 +173,7 @@ const exercises = [
     `,
 
     forklaring: `
+    Spillerne fører ballen rundt i firkanten.
     Instruktøren roper ulike kommandoer:
     Grønn = full fart.
     Gul = rolig fart.
@@ -282,6 +283,7 @@ const exercises = [
     grupper: "2-4",
 
     oppsett: `
+	Lag en firkant.
     Indianerne har hver sin ball inne i firkanten.
     Cowboyene står utenfor med baller.
     `,
@@ -311,10 +313,12 @@ const exercises = [
 
     oppsett: `
     Del inn i lag på 3–5 spillere.
+	Start på en linje eller et merke.
     Sett opp tre merker forover med en meter fra hverandre.
     `,
 
-    forklaring: `
+    forklaring: 
+	Lagene stiller seg opp i rekker bak linjen eller merket.`
     Første spiller tar ballen med seg til første merke, løper tilbake uten ball.
     Deretter løper spilleren ut igjen og tar ballen med seg til neste merke osv.
 	Når han har løpt tilbake og ut igjen til siste merke, skal han sentre til neste på laget.
@@ -400,8 +404,7 @@ const exercises = [
     `,
 
     forklaring: `
-	Instruktøren sentrer ut til første spiller.
-    Første spiller avslutter mot mål.
+	Instruktøren sentrer ut til første spiller som skyter på dirketen på mål.
     Scorer spilleren går han bak i rekka, keeperen er ute, og neste spiller i rekka må i mål.
     Bom eller redning betyr at spilleren går i mål og keeperen går bakerst i rekka.
     Siste spiller som står igjen uten å bli ute vinner.
@@ -415,19 +418,21 @@ const exercises = [
 },
 
 {
-    id: "verdensmester",
+    id: "Verdensmester",
     navn: "Verdensmester",
     grupper: "4-5",
 
     oppsett: `
-    Sett opp flere små baner ved siden av hverandre.
+    Sett opp flere små baner ved siden av hverandre med nummer.
     Spill 1 mot 1 eller 2 mot 2.
+	Trekk om hvem som starter på hvilken bane, eller instruktører bestemmer.
+	Spill 10 runder.
     `,
 
     forklaring: `
     Vinnerlaget rykker opp én bane.
     Taperlaget rykker ned én bane.
-    Målet er å komme til øverste bane og bli verdensmester.
+    Målet er å vinne siste kamp på bane 1 og bli verdensmester.
     `,
 
     fokus: `
@@ -481,8 +486,9 @@ const exercises = [
 
     forklaring: `
     Laget får poeng når de klarer ti sammenhengende pasninger.
-    Motstanderne prøver å bryte.
+    Motstanderne prøver å bryte
     Mister laget ballen starter tellingen på nytt.
+	Bytt lag etter en stund.
     `,
 
     fokus: `
@@ -632,7 +638,7 @@ document.getElementById("content").innerHTML = `
 
 <h3>Oppstart av gruppa</h3>
 <p>
-• Ta opprop.<br>
+• Ta opprop.<br> 
 • Presenter dykk som instruktørar.<br>
 • Fortel kort kva som skal skje denne dagen.<br>
 • Sjekk at alle har fotballsko og leggskinn.<br>
