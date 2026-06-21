@@ -1305,10 +1305,15 @@ function showAttendanceOverview(group) {
             <h3>${session.label}</h3>
             <p><strong>${present.length} / ${groupParticipants.length} møtt</strong></p>
 
-            <h4>❌ Manglar / ikkje kryssa av</h4>
-            <ul class="attendance-name-list missing">
-              ${missing.map(name => `<li>${name}</li>`).join("") || "<li>Alle er kryssa av</li>"}
-            </ul>
+            <h4>✅ Møtt</h4>
+<ul class="attendance-name-list">
+  ${present.map(name => `<li>${name}</li>`).join("") || "<li>Ingen er kryssa av</li>"}
+</ul>
+
+<h4>❌ Manglar / ikkje kryssa av</h4>
+<ul class="attendance-name-list missing">
+  ${missing.map(name => `<li>${name}</li>`).join("") || "<li>Alle er kryssa av</li>"}
+</ul>
           </div>
         `;
       });
