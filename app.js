@@ -7,6 +7,7 @@ const TIMEOUT_MINUTTER = 5;
 
 const db = firebase.firestore();
 let attendanceListener = null;
+let overviewListener = null;
 
 const instructors = [
   { navn: "Adele Liøen Tveiterås", gruppe: 2, telefon: "929 99 350", epost: "adelelioen@icloud.com" },
@@ -1249,7 +1250,7 @@ function goHome() {
   `;
 }
 
-async function showAttendanceOverview(group) {
+function showAttendanceOverview(group) {
   const groupParticipants = participants.filter(p => p.gruppe === group);
 
   const sessions = [
@@ -1261,61 +1262,57 @@ async function showAttendanceOverview(group) {
     { key: "ons_etter", label: "Onsdag etter lunsj" }
   ];
 
-  const attendanceData = {};
-
-  for (const p of groupParticipants) {
-    const id = makeId(p.navn);
-
-    const doc = await db.collection("fotballskule2026")
-      .doc("krysselister")
-      .collection("gruppe" + group)
-      .doc(id)
-      .get();
-
-    attendanceData[id] = doc.exists ? doc.data() : {};
-  }
-
-  let html = `
+  document.getElementById("content").innerHTML = `
     <div class="welcome-box">
       <h2>Oppmøte - Gruppe ${group}</h2>
-      <p>Totalt i gruppa: ${groupParticipants.length}</p>
-  `;
-
-  sessions.forEach(session => {
-    const present = [];
-    const missing = [];
-
-    groupParticipants.forEach(p => {
-      const id = makeId(p.navn);
-
-      if (attendanceData[id][session.key] === true) {
-        present.push(p.navn);
-      } else {
-        missing.push(p.navn);
-      }
-    });
-
-    html += `
-      <div class="attendance-overview-section">
-        <h3>${session.label}</h3>
-        <p><strong>${present.length} / ${groupParticipants.length} møtt</strong></p>
-
-        <h4>✅ Møtt</h4>
-        <ul class="attendance-name-list">
-          ${present.map(name => `<li>${name}</li>`).join("") || "<li>Ingen registrert</li>"}
-        </ul>
-
-        <h4>❌ Ikkje møtt / ikkje kryssa av</h4>
-        <ul class="attendance-name-list missing">
-          ${missing.map(name => `<li>${name}</li>`).join("") || "<li>Alle er kryssa av</li>"}
-        </ul>
-      </div>
-    `;
-  });
-
-  html += `
+      <p>Oppdateres automatisk.</p>
+      <div id="attendanceOverviewContent"></div>
     </div>
   `;
 
-  document.getElementById("content").innerHTML = html;
+  if (overviewListener) {
+    overviewListener();
+  }
+
+  overviewListener = db.collection("fotballskule2026")
+    .doc("krysselister")
+    .collection("gruppe" + group)
+    .onSnapshot(snapshot => {
+      const attendanceData = {};
+
+      snapshot.forEach(doc => {
+        attendanceData[doc.id] = doc.data();
+      });
+
+      let html = `<p><strong>Totalt i gruppa: ${groupParticipants.length}</strong></p>`;
+
+      sessions.forEach(session => {
+        const present = [];
+        const missing = [];
+
+        groupParticipants.forEach(p => {
+          const id = makeId(p.navn);
+
+          if (attendanceData[id] && attendanceData[id][session.key] === true) {
+            present.push(p.navn);
+          } else {
+            missing.push(p.navn);
+          }
+        });
+
+        html += `
+          <div class="attendance-overview-section">
+            <h3>${session.label}</h3>
+            <p><strong>${present.length} / ${groupParticipants.length} møtt</strong></p>
+
+            <h4>❌ Manglar / ikkje kryssa av</h4>
+            <ul class="attendance-name-list missing">
+              ${missing.map(name => `<li>${name}</li>`).join("") || "<li>Alle er kryssa av</li>"}
+            </ul>
+          </div>
+        `;
+      });
+
+      document.getElementById("attendanceOverviewContent").innerHTML = html;
+    });
 }
