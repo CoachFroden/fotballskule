@@ -565,6 +565,10 @@ function showInstructorInfo() {
 	<button class="menu-button" onclick="showInstructorPage('grupper')">
       Grupper
     </button>
+	
+	<button class="menu-button" onclick="showInstructorPage('tilbakemelding')">
+      Tilbakemelding
+    </button>
   `;
 
   document.getElementById("content").innerHTML = `
@@ -731,6 +735,85 @@ Målet med fotballskulen er ikkje å vinne kampar eller gjennomføre flest mogle
 
       ${html}
 
+    </div>
+  `;
+
+  return;
+}
+if (page === "tilbakemelding") {
+  document.getElementById("content").innerHTML = `
+    <div class="welcome-box">
+      <h2>📝 Anonym tilbakemelding</h2>
+
+      <p>
+        Tilbakemeldinga er anonym og blir brukt for å gjere fotballskulen betre neste år.
+        Skriv gjerne både det som var bra og det som kan bli betre.
+      </p>
+
+      <h3>Korleis trivdest du som instruktør?</h3>
+      <select id="trivsel">
+        <option value="">Velg</option>
+        <option value="5">5 - Veldig bra</option>
+        <option value="4">4 - Bra</option>
+        <option value="3">3 - Greitt</option>
+        <option value="2">2 - Mindre bra</option>
+        <option value="1">1 - Dårlig</option>
+      </select>
+
+      <h3>Korleis fungerte appen?</h3>
+      <select id="app">
+        <option value="">Velg</option>
+        <option value="5">5 - Veldig bra</option>
+        <option value="4">4 - Bra</option>
+        <option value="3">3 - Greitt</option>
+        <option value="2">2 - Mindre bra</option>
+        <option value="1">1 - Dårlig</option>
+      </select>
+
+      <h3>Korleis fungerte øvelsane?</h3>
+      <select id="ovelserFeedback">
+        <option value="">Velg</option>
+        <option value="5">5 - Veldig bra</option>
+        <option value="4">4 - Bra</option>
+        <option value="3">3 - Greitt</option>
+        <option value="2">2 - Mindre bra</option>
+        <option value="1">1 - Dårlig</option>
+      </select>
+
+      <h3>Fekk du nok informasjon og støtte?</h3>
+      <select id="stotte">
+        <option value="">Velg</option>
+        <option value="5">5 - Veldig bra</option>
+        <option value="4">4 - Bra</option>
+        <option value="3">3 - Greitt</option>
+        <option value="2">2 - Mindre bra</option>
+        <option value="1">1 - Dårlig</option>
+      </select>
+
+      <h3>Kva fungerte spesielt bra?</h3>
+      <textarea id="bra" class="feedback-text"></textarea>
+
+      <h3>Kva kan vi gjere betre neste år?</h3>
+      <textarea id="bedre" class="feedback-text"></textarea>
+
+      <h3>Har du forslag til nye øvelser?</h3>
+      <textarea id="forslag" class="feedback-text"></textarea>
+
+      <h3>Vil du vere instruktør igjen neste år?</h3>
+      <select id="igjen">
+        <option value="">Velg</option>
+        <option value="Ja">Ja</option>
+        <option value="Kanskje">Kanskje</option>
+        <option value="Nei">Nei</option>
+      </select>
+
+      <br><br>
+
+      <button class="menu-button" onclick="sendFeedback()">
+        Send tilbakemelding
+      </button>
+
+      <p id="feedbackStatus"></p>
     </div>
   `;
 
@@ -1326,4 +1409,30 @@ console.log(id, attendanceData[id]);
 
       document.getElementById("attendanceOverviewContent").innerHTML = html;
     });
+}
+
+async function sendFeedback() {
+  const feedback = {
+    trivsel: document.getElementById("trivsel").value,
+    app: document.getElementById("app").value,
+    ovelser: document.getElementById("ovelserFeedback").value,
+    stotte: document.getElementById("stotte").value,
+    bra: document.getElementById("bra").value,
+    bedre: document.getElementById("bedre").value,
+    forslag: document.getElementById("forslag").value,
+    igjen: document.getElementById("igjen").value,
+    tidspunkt: firebase.firestore.FieldValue.serverTimestamp()
+  };
+
+  await db.collection("fotballskule2026")
+    .doc("tilbakemeldingar")
+    .collection("instruktorar")
+    .add(feedback);
+
+  document.getElementById("feedbackStatus").innerHTML =
+    "✅ Takk for tilbakemeldinga!";
+
+  document.querySelectorAll("select, textarea").forEach(el => {
+    el.value = "";
+  });
 }

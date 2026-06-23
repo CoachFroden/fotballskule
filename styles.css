@@ -464,3 +464,22 @@ body {
 .clickable-name:hover {
   background: #eef3ff;
 }
+
+.feedback-text {
+  width: 100%;
+  min-height: 90px;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.welcome-box select {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  margin-bottom: 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
