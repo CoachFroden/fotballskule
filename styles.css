@@ -483,3 +483,16 @@ body {
   border-radius: 8px;
   border: 1px solid #ccc;
 }
+
+.missing-person {
+  margin-bottom: 10px;
+  padding: 8px;
+  background: #fff5f5;
+  border-left: 4px solid #d71920;
+  border-radius: 6px;
+}
+
+.no-phone {
+  color: #777;
+  font-size: 14px;
+}

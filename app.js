@@ -35,7 +35,7 @@ const instructors = [
 
 const participants = [
   { navn: "Markus Bjørkmo", gruppe: 1, fodselsar: 2019, tshirt: "128-137cm", allergi: "" },
-  { navn: "Jakob Thoresen", gruppe: 1, fodselsar: 2019, tshirt: "128-137cm", allergi: "Ja. Melkeprotein, egg, nøtter, hvete" },
+  { navn: "Jakob Thoresen", gruppe: 1, fodselsar: 2019, tshirt: "128-137cm", allergi: "Melkeprotein, egg, nøtter, hvete" },
   { navn: "Einar Ingvartsen Holmefjord", gruppe: 1, fodselsar: 2019, tshirt: "128-137cm", allergi: "" },
   { navn: "Isak Langeland", gruppe: 1, fodselsar: 2019, tshirt: "128-137cm", allergi: "" },
   { navn: "Olav Hadeland Thieme", gruppe: 1, fodselsar: 2019, tshirt: "128-137cm", allergi: "" },
@@ -54,7 +54,7 @@ const participants = [
   { navn: "Oda Tømmerbakk", gruppe: 2, fodselsar: 2018, tshirt: "137-147cm", allergi: "Melk" },
   { navn: "Noomi Skår Foss", gruppe: 2, fodselsar: 2018, tshirt: "137-147cm", allergi: "" },
   { navn: "Eryk Bucki", gruppe: 2, fodselsar: 2018, tshirt: "137-147cm", allergi: "" },
-  { navn: "Tobias Vinje Våge", gruppe: 2, fodselsar: 2018, tshirt: "137-147cm", allergi: "" },
+  { navn: "Tobias Vinje Våge", gruppe: 2, fodselsar: 2018, tshirt: "137-147cm", allergi: "", foresatt: "Frode Vinje Våge (far)", telefon: "909 94 861"},
   { navn: "Ylva Fossdal Moe", gruppe: 2, fodselsar: 2018, tshirt: "137-147cm", allergi: "" },
   { navn: "Liva Aa. Morskogen", gruppe: 2, fodselsar: 2018, tshirt: "147-158cm", allergi: "" },
   { navn: "Mikkel Stavnes Hisdal", gruppe: 2, fodselsar: 2018, tshirt: "137-147cm", allergi: "" },
@@ -97,7 +97,7 @@ const participants = [
   { navn: "Ylva Jonathanson", gruppe: 4, fodselsar: 2015, tshirt: "147-158cm", allergi: "" },
   { navn: "Sebastian Mæhle Thoresen", gruppe: 4, fodselsar: 2015, tshirt: "147-158cm", allergi: "Egg og nøtter" },
   { navn: "Ulrik Arnatveit Aldal", gruppe: 4, fodselsar: 2015, tshirt: "147-158cm", allergi: "" },
-  { navn: "Ingrid Litangen -Skår", gruppe: 4, fodselsar: 2015, tshirt: "158-170cm", allergi: "" },
+  { navn: "Ingrid Litangen -Skår", gruppe: 4, fodselsar: 2015, tshirt: "158-170cm", allergi: "", foresatt: "Anne-Gro Litangen (mor)", telefon: "408 44 138" },
   { navn: "Samuel Bjørkmo", gruppe: 4, fodselsar: 2015, tshirt: "147-158cm", allergi: "" },
   { navn: "Emmelie Klette", gruppe: 4, fodselsar: 2015, tshirt: "158-170cm", allergi: "" },
 
@@ -1022,6 +1022,7 @@ function showResponsibleMenu() {
     <button class="menu-button" onclick="showResponsiblePage('program')">Program</button>
     <button class="menu-button" onclick="showResponsiblePage('gjoremal')">Gjøremål</button>
 	<button class="menu-button" onclick="showResponsiblePage('oppmote')">Oppmøte</button>
+	<button class="menu-button" onclick="showResponsiblePage('mangler')">Manglar</button>
   `;
 
 document.getElementById("content").innerHTML = `
@@ -1054,6 +1055,26 @@ function showResponsiblePage(page) {
     <div class="welcome-box">
       <h2>Oppmøte</h2>
       <p>Velg gruppe for å sjå status på krysselistene.</p>
+    </div>
+  `;
+
+  return;
+}
+
+if (page === "mangler") {
+  document.getElementById("mainMenu").innerHTML = `
+    <button class="menu-button" onclick="showMissingOverview('man_for')">Måndag<br>før lunsj</button>
+    <button class="menu-button" onclick="showMissingOverview('man_etter')">Måndag<br>etter lunsj</button>
+    <button class="menu-button" onclick="showMissingOverview('tir_for')">Tysdag<br>før lunsj</button>
+    <button class="menu-button" onclick="showMissingOverview('tir_etter')">Tysdag<br>etter lunsj</button>
+    <button class="menu-button" onclick="showMissingOverview('ons_for')">Onsdag<br>før lunsj</button>
+    <button class="menu-button" onclick="showMissingOverview('ons_etter')">Onsdag<br>etter lunsj</button>
+  `;
+
+  document.getElementById("content").innerHTML = `
+    <div class="welcome-box">
+      <h2>Manglar oppmøte</h2>
+      <p>Vel tidspunkt for å sjå alle som ikkje er kryssa av.</p>
     </div>
   `;
 
@@ -1435,4 +1456,107 @@ async function sendFeedback() {
   document.querySelectorAll("select, textarea").forEach(el => {
     el.value = "";
   });
+}
+
+let missingListener = null;
+
+function showMissingOverview(session) {
+  const labels = {
+    man_for: "Måndag før lunsj",
+    man_etter: "Måndag etter lunsj",
+    tir_for: "Tysdag før lunsj",
+    tir_etter: "Tysdag etter lunsj",
+    ons_for: "Onsdag før lunsj",
+    ons_etter: "Onsdag etter lunsj"
+  };
+
+  document.getElementById("content").innerHTML = `
+    <div class="welcome-box">
+      <h2>Manglar - ${labels[session]}</h2>
+      <p>Oppdateres automatisk.</p>
+      <div id="missingOverviewContent"></div>
+    </div>
+  `;
+
+  if (missingListener) {
+    missingListener();
+  }
+
+  const allData = {};
+
+  let loadedGroups = 0;
+
+  for (let group = 1; group <= 5; group++) {
+    db.collection("fotballskule2026")
+      .doc("krysselister")
+      .collection("gruppe" + group)
+      .onSnapshot(snapshot => {
+        allData[group] = {};
+
+        snapshot.forEach(doc => {
+          allData[group][doc.id] = doc.data();
+        });
+
+        loadedGroups++;
+        renderMissingOverview(session, labels[session], allData);
+      });
+  }
+}
+
+function renderMissingOverview(session, label, allData) {
+  let totalMissing = 0;
+  let html = "";
+
+  for (let group = 1; group <= 5; group++) {
+    const groupParticipants = participants.filter(p => p.gruppe === group);
+    const missing = [];
+
+    groupParticipants.forEach(p => {
+      const id = makeId(p.navn);
+      const data = allData[group]?.[id];
+
+      if (!data || data[session] !== true) {
+        missing.push(p);
+      }
+    });
+
+    totalMissing += missing.length;
+
+    html += `
+      <div class="attendance-overview-section">
+        <h3>Gruppe ${group}</h3>
+        <p><strong>${groupParticipants.length - missing.length} / ${groupParticipants.length} møtt</strong></p>
+    `;
+
+    if (missing.length === 0) {
+      html += `<p>✅ Alle er kryssa av.</p>`;
+    } else {
+      html += `<ul class="attendance-name-list missing">`;
+
+      missing.forEach(p => {
+        html += `
+          <li class="missing-person">
+            <strong>${p.navn}</strong>
+            ${p.foresatt
+  ? `<br>📞 <a href="tel:${p.foresatt.replace(/[^0-9+]/g, '')}">${p.foresatt}</a>`
+  : `<br><span class="no-phone">Ingen telefon lagt inn</span>`
+}
+          </li>
+        `;
+      });
+
+      html += `</ul>`;
+    }
+
+    html += `</div>`;
+  }
+
+  document.getElementById("missingOverviewContent").innerHTML = `
+    <div class="important-box">
+      <h3>${label}</h3>
+      <p><strong>Totalt manglar: ${totalMissing}</strong></p>
+    </div>
+
+    ${html}
+  `;
 }
