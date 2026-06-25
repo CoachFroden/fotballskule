@@ -5,8 +5,8 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background: #f4f6f8;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f3f6fb;
     color: #222;
 }
 
@@ -20,60 +20,130 @@ body {
 .logo {
     width: 100%;
     max-width: 600px;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
+/* MENY */
+
+#mainMenu,
 .button-container {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 30px;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin: 20px auto 25px;
+    max-width: 760px;
 }
 
-.menu-button {
-    background: #002b7f;
-    color: white;
+.menu-button{
+
+    width:100%;
+    min-height:58px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border:none;
+    border-radius:16px;
+
+    background:linear-gradient(180deg,#14358A,#0A1C5A);
+
+    color:#fff;
+
+    font-size:16px;
+    font-weight:700;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 5px 14px rgba(10,28,90,.35);
+
+    transition:.2s;
+}
+
+.menu-button:hover{
+
+    background:linear-gradient(180deg,#1B4DB8,#14358A);
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(10,28,90,.45);
+
+}
+
+.menu-button:active{
+    transform:scale(.98);
+}
+
+/* TILBAKEKNAPP */
+
+.home-button {
+    grid-column: 1 / -1;
+    justify-self: center;
+
+    height: 34px;
+    padding: 0 18px;
+
     border: none;
-    padding: 15px 35px;
-    border-radius: 10px;
-    font-size: 15px;
+    border-radius: 999px;
+
+    background: #e8e8e8;
+    color: #444;
+
+    font-size: 14px;
+    font-weight: 600;
+
     cursor: pointer;
     transition: 0.2s;
-	min-height: 70px;
-	line-height: 1.3;
 }
 
-.menu-button:hover {
-    background: #d71920;
+.home-button:hover {
+    background: #d8d8d8;
+}
+
+/* INNHOLD */
+
+#content {
+    margin-top: 15px;
 }
 
 .welcome-box {
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    margin-bottom: 30px;
+    background: #ffffff;
+    padding: 24px;
+    border-radius: 18px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.welcome-box h1,
+.welcome-box h2,
+.welcome-box h3{
+    color:#0A1C5A;
+    text-align: center;
+    margin-bottom: 14px;
 }
 
 .welcome-box h1 {
     color: #002b7f;
-    margin-bottom: 10px;
 }
 
-.welcome-box h2 {
-    color: #d71920;
-    margin-bottom: 20px;
+.welcome-box h2{
+    color:#D71920;
+}
+
+.welcome-box h3 {
+    color: #002b7f;
+    margin-top: 18px;
 }
 
 .welcome-box p {
-    margin-bottom: 10px;
     line-height: 1.6;
+    margin-bottom: 10px;
 }
 
-#content {
-    margin-top: 20px;
-}
+/* SKJEMA */
 
 .filter-row {
     display: flex;
@@ -83,7 +153,10 @@ body {
 }
 
 .filter-row input,
-.filter-row select {
+.filter-row select,
+.welcome-box select,
+.feedback-text {
+    width: 100%;
     padding: 12px;
     font-size: 16px;
     border: 1px solid #ccc;
@@ -94,6 +167,13 @@ body {
     flex: 1;
     min-width: 200px;
 }
+
+.feedback-text {
+    min-height: 90px;
+    margin-bottom: 12px;
+}
+
+/* TABELL */
 
 .participant-table {
     width: 100%;
@@ -118,8 +198,165 @@ body {
     font-weight: bold;
 }
 
-/* Mobilvisning */
+/* KORT */
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px;
+    margin-top: 20px;
+}
+
+.contact-card,
+.exercise-card,
+.attendance-overview-section,
+.instruction-section,
+.attendance-summary-card {
+    background: #ffffff;
+    border-left: 5px solid #002b7f;
+    border-radius: 12px;
+    padding: 14px;
+    text-align: left;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.contact-card h3,
+.exercise-card h3,
+.instruction-section h3,
+.attendance-overview-section h3 {
+    color: #002b7f;
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+.exercise-list,
+.attendance-list,
+.attendance-summary-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.exercise-card {
+    cursor: pointer;
+}
+
+.exercise-card p {
+    color: #555;
+    font-size: 14px;
+}
+
+.attendance-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: white;
+    border: 1px solid #ddd;
+    border-left: 5px solid #002b7f;
+    border-radius: 12px;
+
+    padding: 14px;
+    font-size: 17px;
+    font-weight: 600;
+    text-align: left;
+}
+
+.attendance-card input[type="checkbox"],
+.attendance-table input[type="checkbox"] {
+    width: 26px;
+    height: 26px;
+}
+
+.attendance-counter {
+    background: #eef3ff;
+    color: #002b7f;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.attendance-name-list {
+    padding-left: 20px;
+    margin-bottom: 10px;
+}
+
+.attendance-name-list.missing {
+    color: #b00020;
+}
+
+.clickable-name {
+    cursor: pointer;
+    padding: 6px 4px;
+    border-bottom: 1px solid #eee;
+}
+
+.clickable-name:hover {
+    background: #eef3ff;
+}
+
+.missing-person {
+    margin-bottom: 10px;
+    padding: 8px;
+    background: #fff5f5;
+    border-left: 4px solid #d71920;
+    border-radius: 6px;
+}
+
+.no-phone {
+    color: #777;
+    font-size: 14px;
+}
+
+/* LISTER OG BOKSER */
+
+.task-list,
+.instruction-section ul,
+.instruction-section ol {
+    text-align: left;
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+.task-list li,
+.instruction-section li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.important-box,
+.highlight-box {
+    background: #fff8d6;
+    border-left: 6px solid #f0b400;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+}
+
+/* MOBIL */
+
 @media (max-width: 700px) {
+    .container {
+        padding: 12px;
+    }
+
+    #mainMenu,
+    .button-container {
+        grid-template-columns: 1fr;
+        max-width: 360px;
+        gap: 12px;
+    }
+
+    .menu-button {
+        min-height: 56px;
+        font-size: 16px;
+    }
+
+    .welcome-box {
+        padding: 20px;
+    }
+
     .participant-table,
     .participant-table thead,
     .participant-table tbody,
@@ -159,340 +396,9 @@ body {
         text-align: left;
     }
 
-    .participant-table td:nth-child(1)::before {
-        content: "Navn";
-    }
-
-    .participant-table td:nth-child(2)::before {
-        content: "Gruppe";
-    }
-
-    .participant-table td:nth-child(3)::before {
-        content: "Født";
-    }
-
-    .participant-table td:nth-child(4)::before {
-        content: "T-skjorte";
-    }
-
-    .participant-table td:nth-child(5)::before {
-        content: "Allergi/mat";
-    }
-
-    .allergy-cell {
-        background: #ffe0e0;
-    }
-}
-
-.contact-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 15px;
-  margin-top: 20px;
-}
-
-.contact-card {
-  background: white;
-  border-left: 5px solid #002b7f;
-  border-radius: 10px;
-  padding: 15px;
-  text-align: left;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-
-.contact-card h3 {
-  color: #002b7f;
-  margin-bottom: 10px;
-}
-
-.contact-card p {
-  margin: 5px 0;
-}
-
-.task-list {
-  text-align: left;
-  padding-left: 20px;
-  margin-bottom: 20px;
-}
-
-.task-list li {
-  margin-bottom: 8px;
-  line-height: 1.5;
-}
-
-.important-box {
-  background: #fff8d6;
-  border-left: 6px solid #f0b400;
-  padding: 15px;
-  border-radius: 10px;
-  margin-bottom: 25px;
-}
-
-.important-box h3 {
-  margin-top: 0;
-}
-
-.home-button {
-    background: #002b7f;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    padding: 5px 12px;
-    font-size: 12px;
-    cursor: pointer;
-    margin-bottom: 15px;
-}
-
-.home-button:hover {
-    background: #002b7f;
-    color: white;
-}
-
-.top-menu {
-    text-align: center;
-    margin-bottom: 15px;
-}
-
-.attendance-table td:nth-child(1)::before {
-  content: "Navn";
-}
-
-.attendance-table td:nth-child(2)::before {
-  content: "Man før";
-}
-
-.attendance-table td:nth-child(3)::before {
-  content: "Man etter";
-}
-
-.attendance-table td:nth-child(4)::before {
-  content: "Tir før";
-}
-
-.attendance-table td:nth-child(5)::before {
-  content: "Tir etter";
-}
-
-.attendance-table td:nth-child(6)::before {
-  content: "Ons før";
-}
-
-.attendance-table td:nth-child(7)::before {
-  content: "Ons etter";
-}
-
-.attendance-table input[type="checkbox"] {
-  width: 22px;
-  height: 22px;
-}
-
-.attendance-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 16px;
-}
-
-.attendance-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  text-align: left;
-  background: white;
-  border: 1px solid #ddd;
-  border-left: 5px solid #002b7f;
-  border-radius: 10px;
-  padding: 14px;
-  font-size: 17px;
-  font-weight: 600;
-}
-
-.attendance-card input[type="checkbox"] {
-  width: 28px;
-  height: 28px;
-}
-
-.attendance-counter {
-  background: #eef3ff;
-  color: #002b7f;
-  font-weight: bold;
-  padding: 10px;
-  border-radius: 8px;
-}
-
-.exercise-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 18px;
-}
-
-.exercise-card {
-  background: white;
-  border: 1px solid #ddd;
-  border-left: 6px solid #002b7f;
-  border-radius: 10px;
-  padding: 14px;
-  text-align: left;
-  cursor: pointer;
-}
-
-.exercise-card h3 {
-  margin: 0 0 6px 0;
-  color: #002b7f;
-}
-
-.exercise-card p {
-  margin: 0;
-  color: #555;
-  font-size: 14px;
-}
-
-.instruction-page {
-  text-align: left;
-}
-
-.instruction-section {
-  background: #f8fafc;
-  border-left: 5px solid #002b7f;
-  border-radius: 10px;
-  padding: 14px;
-  margin-bottom: 16px;
-}
-
-.instruction-section h3 {
-  margin-top: 0;
-  color: #002b7f;
-}
-
-.instruction-section ul,
-.instruction-section ol {
-  padding-left: 20px;
-  margin: 0;
-}
-
-.instruction-section li {
-  margin-bottom: 8px;
-  line-height: 1.4;
-}
-
-.highlight-box {
-  background: #fff8d6;
-  border-left: 6px solid #f0b400;
-  border-radius: 10px;
-  padding: 14px;
-  margin-bottom: 16px;
-}
-
-.welcome-box {
-  text-align: left;
-}
-
-.welcome-box h1,
-.welcome-box h2,
-.welcome-box h3 {
-  text-align: center;
-}
-
-.welcome-box p {
-  text-align: left;
-}
-
-.attendance-summary-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 18px;
-}
-
-.attendance-summary-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: white;
-  border-left: 6px solid #002b7f;
-  border-radius: 10px;
-  padding: 14px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  font-size: 16px;
-}
-
-.attendance-summary-card strong {
-  color: #002b7f;
-  font-size: 18px;
-}
-
-.attendance-overview-section {
-  background: #f8fafc;
-  border-left: 6px solid #002b7f;
-  border-radius: 10px;
-  padding: 14px;
-  margin-bottom: 18px;
-  text-align: left;
-}
-
-.attendance-overview-section h3 {
-  color: #002b7f;
-  text-align: left;
-  margin-bottom: 8px;
-}
-
-.attendance-overview-section h4 {
-  margin-top: 12px;
-  margin-bottom: 6px;
-}
-
-.attendance-name-list {
-  padding-left: 20px;
-  margin-bottom: 10px;
-}
-
-.attendance-name-list li {
-  margin-bottom: 4px;
-}
-
-.attendance-name-list.missing {
-  color: #b00020;
-}
-
-.clickable-name {
-  cursor: pointer;
-  padding: 6px 4px;
-  border-bottom: 1px solid #eee;
-}
-
-.clickable-name:hover {
-  background: #eef3ff;
-}
-
-.feedback-text {
-  width: 100%;
-  min-height: 90px;
-  padding: 12px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  margin-bottom: 12px;
-}
-
-.welcome-box select {
-  width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  margin-bottom: 14px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-}
-
-.missing-person {
-  margin-bottom: 10px;
-  padding: 8px;
-  background: #fff5f5;
-  border-left: 4px solid #d71920;
-  border-radius: 6px;
-}
-
-.no-phone {
-  color: #777;
-  font-size: 14px;
+    .participant-table td:nth-child(1)::before { content: "Navn"; }
+    .participant-table td:nth-child(2)::before { content: "Gruppe"; }
+    .participant-table td:nth-child(3)::before { content: "Født"; }
+    .participant-table td:nth-child(4)::before { content: "T-skjorte"; }
+    .participant-table td:nth-child(5)::before { content: "Allergi/mat"; }
 }

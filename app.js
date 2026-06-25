@@ -550,16 +550,17 @@ const exercises = [
 function showInstructorInfo() {
 
   document.getElementById("mainMenu").innerHTML = `
-    <button class="menu-button" onclick="showInstructorPage('ovelser')">
-      Øvelser
+    
+	<button class="menu-button" onclick="showInstructorPage('instrukser')">
+      Instrukser
     </button>
-
-    <button class="menu-button" onclick="showInstructorPage('krysselister')">
+	
+	<button class="menu-button" onclick="showInstructorPage('krysselister')">
       Krysselister
     </button>
-
-    <button class="menu-button" onclick="showInstructorPage('instrukser')">
-      Instrukser
+	
+	<button class="menu-button" onclick="showInstructorPage('ovelser')">
+      Øvelser
     </button>
 	
 	<button class="menu-button" onclick="showInstructorPage('grupper')">
@@ -617,6 +618,9 @@ if (page === "ovelser") {
       <button class="menu-button" onclick="showAttendanceList(3)">Gruppe 3</button>
       <button class="menu-button" onclick="showAttendanceList(4)">Gruppe 4</button>
       <button class="menu-button" onclick="showAttendanceList(5)">Gruppe 5</button>
+	  <button class="home-button" onclick="showInstructorInfo()">
+    ← Til instruktørar
+</button>
     `;
 
     document.getElementById("content").innerHTML = `
@@ -1049,6 +1053,9 @@ function showResponsiblePage(page) {
     <button class="menu-button" onclick="showAttendanceOverview(3)">Gruppe 3</button>
     <button class="menu-button" onclick="showAttendanceOverview(4)">Gruppe 4</button>
     <button class="menu-button" onclick="showAttendanceOverview(5)">Gruppe 5</button>
+	 <button class="home-button" onclick="showResponsibleMenu()">
+      ← Til ansvarlege
+    </button>
   `;
 
   document.getElementById("content").innerHTML = `
@@ -1069,6 +1076,9 @@ if (page === "mangler") {
     <button class="menu-button" onclick="showMissingOverview('tir_etter')">Tysdag<br>etter lunsj</button>
     <button class="menu-button" onclick="showMissingOverview('ons_for')">Onsdag<br>før lunsj</button>
     <button class="menu-button" onclick="showMissingOverview('ons_etter')">Onsdag<br>etter lunsj</button>
+	 <button class="home-button" onclick="showResponsibleMenu()">
+      ← Til ansvarlege
+    </button>
   `;
 
   document.getElementById("content").innerHTML = `
