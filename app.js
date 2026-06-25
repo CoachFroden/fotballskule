@@ -1553,7 +1553,7 @@ function renderMissingOverview(session, label, allData) {
           <li class="missing-person">
             <strong>${p.navn}</strong>
             ${p.foresatt
-  ? `<br>📞 ${p.foresatt}`
+  ? `<br>${formatForesattKontakt(p.foresatt)}`
   : `<br><span class="no-phone">Ingen telefon lagt inn</span>`
 }
           </li>
@@ -1574,4 +1574,11 @@ function renderMissingOverview(session, label, allData) {
 
     ${html}
   `;
+}
+
+function formatForesattKontakt(foresatt) {
+  return foresatt.replace(/(\d{3})\s?(\d{2})\s?(\d{3})/g, function(match) {
+    const number = match.replace(/\s/g, "");
+    return `<a class="phone-link" href="tel:${number}">📞 ${match}</a>`;
+  });
 }
