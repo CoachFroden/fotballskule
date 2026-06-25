@@ -859,6 +859,10 @@ function showAttendanceList(group) {
 
 <button class="menu-button" onclick="showAttendanceSession(${group}, 'ons_for')">Onsdag<br>før lunsj</button>
 <button class="menu-button" onclick="showAttendanceSession(${group}, 'ons_etter')">Onsdag<br>etter lunsj</button>
+
+<button class="home-button" onclick="showInstructorPage('krysselister')">
+    Krysselister
+</button>
   `;
 
   document.getElementById("content").innerHTML = `
@@ -877,6 +881,7 @@ async function showAttendanceSession(group, session) {
     tir_etter: "Tysdag etter lunsj",
     ons_for: "Onsdag før lunsj",
     ons_etter: "Onsdag etter lunsj"
+	
   };
 
   const groupParticipants = participants.filter(p => p.gruppe === group);
