@@ -1140,6 +1140,8 @@ if (page === "program") {
 <strong>10.00</strong> Oppstart aktivitetar<br>
 <strong>11.30</strong> Lunsj<br>
 <strong>12.15</strong> Nye instruktørgrupper startar<br>
+<strong>13.15</strong> Frukt<br>
+<strong>13.30</strong> Oppstart etter frukt<br>
 <strong>14.00</strong> Avslutning
 </p>
 
@@ -1149,7 +1151,7 @@ if (page === "program") {
 ✔️ Utdeling av ball, sekk og t-skjorte<br>
 ✔️ Matservering<br>
 ✔️ Allergiar og spesielle behov<br>
-✔️ Oppmøte etter lunsj<br>
+✔️ Oppdeling og servering av frukt<br>
 ✔️ Rydding etter endt dag
 </p>
 
@@ -1158,21 +1160,20 @@ if (page === "program") {
 <h3>📅 Tysdag 23. juni</h3>
 
 <p>
-<strong>09.00</strong> Oppmøte ansvarlege<br>
+<strong>09.30</strong> Oppmøte ansvarlege<br>
 <strong>09.45</strong> Alle deltakarar skal vere på plass<br>
 <strong>10.00</strong> Oppstart aktivitetar<br>
 <strong>11.30</strong> Lunsj<br>
 <strong>12.15</strong> Nye instruktørgrupper startar<br>
+<strong>13.15</strong> Frukt<br>
 <strong>14.00</strong> Avslutning
 </p>
 
 <p>
 <strong>Ansvarlege må passe på:</strong><br>
-✔️ Oppmøte og registrering<br>
 ✔️ Matservering<br>
 ✔️ Allergiar og spesielle behov<br>
-✔️ Oppmøte etter lunsj<br>
-✔️ Førstehjelp ved behov<br>
+✔️ Oppdeling og servering av frukt<br>
 ✔️ Rydding etter endt dag
 </p>
 
@@ -1181,22 +1182,21 @@ if (page === "program") {
 <h3>📅 Onsdag 24. juni</h3>
 
 <p>
-<strong>09.00</strong> Oppmøte ansvarlege<br>
+<strong>09.30</strong> Oppmøte ansvarlege<br>
 <strong>09.45</strong> Alle deltakarar skal vere på plass<br>
 <strong>10.00</strong> Oppstart aktivitetar<br>
-<strong>11.30</strong> Lunsj<br>
-<strong>12.15</strong> Nye instruktørgrupper startar<br>
-<strong>13.00</strong> Besøk frå Sparebanken Norge<br>
-<strong>13.30</strong> Storkamp deltakarar mot instruktørar<br>
+<strong>11.15</strong> Lunsj<br>
+<strong>12.00</strong> Nye instruktørgrupper startar<br>
+<strong>13.00</strong> Frukt<br>
+<strong>13.15</strong> Storkamp deltakarar mot instruktørar<br>
 <strong>14.00</strong> Avslutning
 </p>
 
 <p>
 <strong>Ansvarlege må passe på:</strong><br>
-✔️ Oppmøte og registrering<br>
 ✔️ Matservering<br>
 ✔️ Allergiar og spesielle behov<br>
-✔️ Besøkande og fotografering<br>
+✔️ Oppdeling og servering av frukt<br>
 ✔️ Storkampen<br>
 ✔️ Opprydding av anlegget
 </p>
@@ -1232,7 +1232,7 @@ if (page === "gjoremal") {
       <h3>✅ Før oppstart</h3>
 
       <ul class="task-list">
-        <li>Ta imot deltakarar og føresette.</li>
+        <li>Ta imot deltakarar og eventuelt føresette.</li>
         <li>Sjekk at alle finn rett gruppe.</li>
         <li>Sjå over bane, utstyr og serveringsområde.</li>
         <li>Ver tilgjengeleg for spørsmål frå føresette og instruktørar.</li>
